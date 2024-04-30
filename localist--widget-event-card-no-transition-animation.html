@@ -1,0 +1,228 @@
+{% comment %}
+The Card widget was created from your inspiration. Hope College (hope.edu) originally created a widget that pulled from the Localist Calendar API and presented events in a Pinterest-style card layout. Many Localist customers requested that something similar be created in widget form. Here it is! Thanks to Hope College for creating such a cool application on top of the Localist API.
+
+This option has no hover animation.
+
+#################################
+START MAKE COLOR/FONT CHANGES HERE
+you can change colors and fonts in this section rather than modifying CSS directly below
+{% endcomment %}
+
+{% assign card_link_color = 'hsl(213, 66%, 45%)' %}
+{% assign card_link_hover = 'hsl(0, 0%, 25%)' %}
+
+{% assign font_family = 'Mallory,Helvetica,Arial,sans-serif' %}
+{% assign desc_font_family = 'YaleNew,serif' %}
+{% assign card_content_color = 'hsl(0, 0%, 25%)' %}
+
+{% comment %}
+END MAKE COLOR/FONT CHANGES HERE
+#################################
+{% endcomment %}
+
+{% capture image_transform %}
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  -ms-transform-origin: center center;
+  -o-transform-origin: center center;
+  transform-origin: center center;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+{% endcapture %}
+
+<!-- begin code -->
+<style type="text/css">
+
+.localist-widget-hl ol {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  font-family: {{ font_family }};
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  max-width: 1344px;
+}
+
+.localist-widget-hl .event-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  position: relative;
+  gap: 2rem;
+}
+
+.localist-widget-hl .event-list > li {
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+}
+
+.localist-widget-hl .event-card {
+  display: block;
+  padding: 0;
+  position: relative;
+  background: #fff;
+  color: {{ card_content_color }};
+  font-size: 1rem;
+  height: 100%;
+}
+
+.localist-widget-hl .event-card__img {
+  position: relative;
+  width: auto;
+  height: auto;
+  min-height: 100%;
+  min-width: 100%;
+  display: block;
+  left: 50%;
+  {{ image_transform }}
+}
+
+.localist-widget-hl .event-card img {
+  display: block;
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+}
+
+.localist-widget-hl .event-card header {
+  position: relative;
+  aspect-ratio: 300/225;
+}
+
+.localist-widget-hl .event-card:hover header,
+.localist-widget-hl .event-card:focus header {
+  box-shadow: 0px 1px 2px 0px #00000029,0px 4px 4px 0px #00000017,0px 6px 8px 0px #00000021 ;
+}
+
+.localist-widget-hl * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.event-card__title {
+  font: bold 1.5rem/1.2 {{ desc_font_family }};
+  margin: 0;
+}
+
+.event-card__date {
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.event-card__content {
+  padding: 1rem 0;
+}
+
+.event-card__link {
+  color: {{ card_link_color }};
+  text-decoration: none;
+}
+
+.event-card__link:hover,
+.event-card__link:focus {
+  color: {{ card_link_hover }};
+  text-decoration: underline;
+}
+
+.event-card__link .event-card__details,
+.event-card__link p,
+.event-card__link:visited .event-card__details,
+.event-card__link:visited p {
+  color: {{ card_content_color }};
+}
+
+.event-card:hover .event-card__title,
+.event-card:focus .event-card__title {
+  color: {{ card_link_hover }};
+  text-decoration: underline;
+}
+
+@media only screen and (min-width: 30em) {
+  .localist-widget-hl .event-list  {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 45em) {
+  .localist-widget-hl .event-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .event-card__title {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (min-width: 62.5em) {
+  .localist-widget-hl .event-list {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .event-card__title {
+    font-size: 2rem;
+  }
+}
+
+</style>
+
+<div class="localist-widget-hl">
+
+    <ol class="event-list">
+        {% if events == empty %}
+        <li class="lw lw_event_item nocontent">
+            <div class="lw_event_item_title">{{ site.snippets.widget_nocontent }}</div>
+        </li>
+        {% else %}
+          {% for event in events %}
+            <li class="event">
+                <article class="event-card">
+                  <a class="event-card__link" href="{{ event.url }}" {% if settings.target_blank %} target="_blank"{% endif %} aria-label="{{event.name}}" tabindex="-1" aria-hidden="true">
+                    {% unless event.status == 'live' %}{{ site.snippets.event_status[event.status] }}: {% endunless %}
+                    <header>
+                        {% photo_for event size:big_300 width:300 height:225 class:'event-card__img' %}
+                    </header>
+                    </a>  
+                    <div class="event-card__content">
+                      <a class="event-card__link" href="{{ event.url }}" {% if settings.target_blank %} target="_blank"{% endif %} >
+                      <h2 class="event-card__title">
+                        {% unless event.status == 'live' %}{{ site.snippets.event_status[event.status] }}: {% endunless %}
+                        {{ event.name }}
+                      </h2>
+                      </a>  
+                      <div class="event-card__details">
+                        <div class="event-card__date">
+                            <time datetime="{% event_time event order:"date" date_format:"Y-m-d" short_time_format:"Y-m-d" %}">
+                                {% event_time event order:"date,time" date_format:"l, F j" date_format_year:"l, F j, Y" time_format: "g:i a" short_time_format:"g:i a" separator:" | " %}
+                            </time>
+                        </div>
+
+                        {% if event.place.visible_name != blank or event.location_name != blank %}
+                          <div class="event-card__location">
+                            <span class="event-card__location-label">Location:</span>
+                              {% if event.place.visible_name != blank %}
+                                {{ event.place.visible_name }}
+                              {% else %}
+                                {{ event.location_name }}
+                              {% endif %}
+                          </div>
+                        {% endif %}
+                      </div>
+
+                      <p>
+                        {% item_description event %}
+                      </p>
+                    
+                    </div>
+                </article>
+            </li>
+          {% endfor %}
+        {% endif %}
+    </ol>
+</div>

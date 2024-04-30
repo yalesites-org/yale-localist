@@ -1,0 +1,128 @@
+/* Load Mallory */
+html,
+body {
+  font-family: 'Mallory', sans-serif;
+}
+
+/* Serif type */
+.em-desktop-menu-title,
+.em-banner_title {
+  font-family: 'YaleNew', serif;
+}
+
+/* Page header */
+.em-header_page {
+  padding: 2rem 0;
+}
+
+/* Header search */
+.em-search-bar .em-search-bar-form .em-basic-input input {
+  padding: 0.75rem 3rem 0.75rem 2.1875rem;
+  border-radius: 1.25rem;
+}
+
+.em-search-bar .em-basic-input i.fas {
+  right: 0;
+  left: auto;
+}
+
+/* Header button */
+.em-header
+  .em-navbar-container
+  .em-desktop-menu-icons
+  .em-desktop-user-menu
+  .em-button.em-secondary.em-white.em-gray {
+  border: 0.125rem solid #fff;
+  color: #fff;
+  background-color: transparent;
+}
+
+.em-header
+  .em-navbar-container
+  .em-desktop-menu-icons
+  .em-desktop-user-menu
+  .em-button.em-secondary.em-white.em-gray:hover {
+  border: 0.125rem solid #fff;
+  color: #00366b;
+  background-color: #fff;
+}
+
+/* Footer */
+.em-footer .em-subfooter {
+  background-color: #00366b;
+}
+
+/* Page, footer and event banner, unset background-image */
+.em-header_page,
+.em-footer .em-footer_container,
+.em-event_banner .em-event_banner-overlay {
+  background-image: unset;
+}
+
+/* Event banner */
+.em-event_banner .em-event_banner-overlay {
+  background-color: #465a5d;
+}
+
+.em-event_banner .em-button.em-secondary {
+  border: 0.125rem solid #ffffff;
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.em-event_banner .em-button.em-secondary:hover {
+  border: 0.125rem solid #fff;
+  color: #00366b;
+  background-color: #fff;
+}
+
+.em-event_banner {
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.em-event_banner .em-event_banner-content {
+  flex-basis: 100%;
+  margin-right: 0;
+  text-align: center;
+}
+
+/* Event cards */
+.em-card .em-card_title {
+  font-family: 'YaleNew', serif;
+}
+
+.em-card .em-card_title + .em-card_event-text {
+  font-weight: 400;
+  font-variant-caps: small-caps;
+  font-variant-numeric: oldstyle-nums;
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
+}
+
+.em-card .em-card_title a:hover,
+.em-card .em-card_title a:focus,
+.em-card .em-card_event-text a:hover,
+.em-card .em-card_event-text a:focus {
+  color: hsl(0, 0%, 25%);
+}
+
+.em-card .em-card_image {
+  border-radius: 0;
+}
+
+.em-card .em-card_image .img_card {
+  border-radius: 0;
+}
+
+.em-card .em-list_tags {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.5rem;
+}
+
+.em-card .em-list_tags .em-card_tag {
+  flex: 0 auto;
+  font-size: 0.65rem;
+}
