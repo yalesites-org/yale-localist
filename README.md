@@ -10,6 +10,6 @@ This file contains all the CSS used here: https://yale.enterprise.localist.com/a
 
 ---
 
-## localist--\*\*-.html files
+## localist--.html files
 
 ## These files are named after their corresponding widget names here: https://yale.enterprise.localist.com/admin/widgets
